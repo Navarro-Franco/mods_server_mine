@@ -9,7 +9,7 @@ andar bajando `.jar` uno por uno.
 | Minecraft | 1.20.1 |
 | Mod loader | Fabric |
 | Java | 17 |
-| Contenido | 51 mods (`.jar`) + 2 configs de Glore (`glore_blocks.json`, `glore_brightness.json`) |
+| Contenido | 52 mods (`.jar`) + 2 configs de Glore (`glore_blocks.json`, `glore_brightness.json`) |
 
 > Los mods de librería (Fabric API, Cloth Config, GeckoLib, Architectury, owo-lib,
 > etc.) también están incluidos. No los borres: otros mods dependen de ellos.
