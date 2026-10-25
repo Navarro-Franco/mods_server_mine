@@ -1,0 +1,11 @@
+# Basura del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs que algunos mods dejan dentro de la carpeta mods
+*.log
+
+# Por si se clona/ejecuta desde una carpeta con datos de Minecraft
+logs/
+crash-reports/
