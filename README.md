@@ -90,6 +90,49 @@ git pull
 `git pull` agrega los mods nuevos y **elimina los que se hayan sacado del repo**,
 así que después de actualizar la carpeta queda igual a la del resto.
 
+## Si `git pull` falla después de un force push
+
+A veces el historial del repo se reescribe (un `git push --force`). Cuando pasa,
+`git pull` muestra algo así:
+
+```
+ + b0ceb9d...548988f main -> origin/main  (forced update)
+fatal: refusing to merge unrelated histories
+```
+
+No se rompió nada ni perdiste mods: Git solo se negó a mezclar dos historiales
+que ya no tienen relación. La solución es dejar tu carpeta igual al remoto.
+
+Cerrá el juego y ejecutá:
+
+```powershell
+cd "$env:appdata\.minecraft\mods"
+git fetch origin
+git reset --hard origin/main
+```
+
+Después de esto la carpeta queda idéntica a la del repo.
+
+**Ojo con tus cambios locales**
+
+- `reset --hard` descarta los cambios en archivos que ya estaban en el repo.
+- Los `.jar` extra que hayas agregado por tu cuenta **no se borran**, y pueden
+  duplicar un mod o hacer crashear el juego. Revisalos con `git status` y
+  sacalos de la carpeta `mods` si no los querés.
+- Si tenés un mod propio que querés conservar, copialo afuera antes de resetear
+  y volvelo a poner después.
+
+Si la carpeta quedó muy desordenada, lo más simple es repetir la instalación
+desde cero (ver [¿La carpeta `mods` ya tiene cosas?](#la-carpeta-mods-ya-tiene-cosas)).
+
+> No uses `git pull --allow-unrelated-histories`: mezcla los dos historiales y
+> puede dejar mods duplicados o conflictos difíciles de resolver.
+
+### Para quien mantiene el repo
+
+Evitá `git push --force` sobre `main`. Si no queda otra, avisá en el grupo del
+servidor para que todos sepan que tienen que correr los comandos de arriba.
+
 ## Servidor
 
 La carpeta `mods` del servidor se instala igual que la del cliente: se clona con
